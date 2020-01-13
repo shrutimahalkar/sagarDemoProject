@@ -1,0 +1,41 @@
+<div class="cards" *ngIf="rooms?.length;else no_data_templ">
+    <h3 class="card-header text-center font-weight-bold text-uppercase py-4">All Rooms</h3>
+    <br>
+    <div style="margin-bottom: 120px;" class="container">
+        <input type="text" placeholder="Search" [(ngModel)]="searchText" />
+    </div>
+    <div style="margin-top: -100px;" class="container">
+        <table class="table table-striped custab text-center">
+            <thead>
+                <tr>
+                    <th>Room Name</th>
+                    <th>Room location</th>
+                    <th colspan="1">Facility</th>
+                    <th colspan="2">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let room of rooms | filter:searchText | paginate: { itemsPerPage: 5,currentPage: p}">
+                    <td>{{room.name | titlecase}}</td>
+                    <td>{{room.location | titlecase}}</td>
+                    <td>
+                        <p *ngFor="let role of room.facility">
+                            {{role.name | uppercase}}</p>
+                    </td>
+                    <td><button class="btn btn-success" (click)="BookRoom(room)" style="margin-left: 20px;">
+                            <i class="fa fa-home"></i>
+                            Book Room</button></td>
+                </tr>
+            </tbody>
+            <br>
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </table>
+    </div>
+</div>
+
+<ng-template #no_data_templ>
+    <div class="jumbotron">
+        <h1 style="text-align: center;">No Rooms Available</h1>
+        <br>
+    </div>
+</ng-template>

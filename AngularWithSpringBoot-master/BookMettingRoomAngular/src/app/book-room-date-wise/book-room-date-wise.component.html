@@ -1,0 +1,35 @@
+<div class="cards">
+    <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Book Room Date </h3>
+    <br>
+    <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+        {{errorMessage}}
+    </div>
+    <div class="row">
+        <div class="col-md-4" style="margin-left: 440px;">
+            <div class="form-group">
+                <div>
+                    <label for="datetimepicker">Date Time From:</label>
+                    <br>
+                    <angular2-date-picker class="form-control" name="datetimepicker" id="datetimepicker"
+                        [(ngModel)]="form.date1" #datetimepicker="ngModel" [settings]="settings"
+                        style="padding: 0.2rem 0.1rem; background-color:lightskyblue;" required>
+                    </angular2-date-picker>
+                </div>
+
+                <br>
+                <div>
+                    <label for="datetimepicker">Date Time To:</label>
+                    <br>
+                    <angular2-date-picker class="form-control" name="datetimepicker" id="datetimepicker"
+                        [(ngModel)]="form.date2" #datetimepicker="ngModel" [settings]="settings"
+                        style="padding: 0.2rem 0.1rem; background-color:lightskyblue;" required>
+                    </angular2-date-picker>
+                </div>
+                <br>
+                <a style="margin-left: 110px;" (click)="viewAvailable()" class="btn btn-success">
+                    <span class="glyphicon glyphicon-ok"></span> View Room Availability
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

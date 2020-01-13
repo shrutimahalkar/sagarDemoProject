@@ -1,0 +1,111 @@
+<!-- <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">grokonez</a>
+    </div>
+    <ul class="nav navbar-nav" routerLinkActive="active">
+      <li class="nav-item"><a class="nav-link" routerLink="home">Home</a></li>
+      <li *ngIf="authority === 'user'" class="nav-item">
+        <a class="nav-link" routerLink="user">User Board</a>
+      </li>
+      <li *ngIf="authority === 'admin'" class="nav-item">
+        <a class="nav-link" routerLink="admin">Admin Board</a>
+      </li>
+      <li *ngIf="authority === 'pm'" class="nav-item">
+        <a class="nav-link" routerLink="pm">PM Board</a>
+      </li>
+      <li *ngIf="!authority" class="nav-item">
+        <a class="nav-link" routerLink="auth/login">Login</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="container">
+  <router-outlet></router-outlet>
+</div> -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand">
+    <img src="assets/imgs/conversation.png" style="margin-left: 40px;" width="30" height="30"
+      class="d-inline-block align-top" />
+    <span class="text-warning"> Book Metting Room </span>
+  </a>
+
+  <div class="collapse navbar-collapse" id="navbarColor01">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a routerLink="home" class="nav-link">Home</a>
+      </li>
+      <li class="nav-item ">
+        <a routerLink="search" class="nav-link" *ngIf="authority === 'admin'">UserDetails</a>
+      </li>
+      <li class="nav-item ">
+        <a routerLink="admin" class="nav-link" *ngIf="authority === 'admin'">AddRoom</a>
+      </li>
+      <li class="nav-item ">
+        <a routerLink="adminBookRoom" class="nav-link" *ngIf="authority === 'admin'">BookingInfo</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="DateWise" class="nav-link"
+          *ngIf="authority === 'user' || authority === 'pm' || authority === 'tl'">BookRoom</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="showUserRoom" class="nav-link"
+          *ngIf="authority === 'user'|| authority === 'pm' || authority === 'tl'">RoomDetails</a>
+      </li>
+
+      <li class="nav-item">
+        <a routerLink="userChangeRequest" class="nav-link" *ngIf="authority === 'tl'">UserMailRequest</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="tlChangeRequest" class="nav-link" *ngIf="authority === 'pm'">TLMailRequest</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="pmChangeRequest" class="nav-link" *ngIf="authority === 'admin'">PMMailRequest</a>
+      </li>
+      <!-- <li class="nav-item">
+        <a routerLink="ChangeMail" class="nav-link"
+          *ngIf="authority === 'user'|| authority === 'pm' || authority === 'tl'">ChangeMail</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="user" class="nav-link"
+          *ngIf="authority === 'user'|| authority === 'pm' || authority === 'tl'">Mail Request</a>
+      </li> -->
+      <!-- <li class="nav-item">
+        <a routerLink="pm" class="nav-link" *ngIf="authority === 'pm'">Project Manager Panel</a>
+      </li> -->
+      <!-- <li class="nav-item">
+        <a routerLink="pm" class="nav-link" *ngIf="authority === 'tl'">Team Leader Panel</a>
+      </li> -->
+    </ul>
+  </div>
+
+  <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse" *ngIf="!authority">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a routerLink="signup" class="nav-link">
+          <span class="glyphicon glyphicon-user"></span> Sign Up
+        </a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="auth/login" class="nav-link">
+          <span class="glyphicon glyphicon-log-in"></span> Login
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="navbar-nav justify-content-end" *ngIf="authority">
+    <li class="nav-item">
+      <a routerLink="home" class="nav-link">
+        <span class="glyphicon glyphicon-user"></span> {{username | titlecase}}
+      </a>
+    </li>
+    <li class="nav-item">
+      <a (click)="logout()" class="nav-link">
+        <span class="glyphicon glyphicon-log-in"></span> LogOut
+      </a>
+    </li>
+  </div>
+</nav>
+<router-outlet></router-outlet>

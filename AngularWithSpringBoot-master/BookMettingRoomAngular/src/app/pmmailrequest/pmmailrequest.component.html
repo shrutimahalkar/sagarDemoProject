@@ -1,0 +1,105 @@
+<!-- <div class="cards">
+    <h3 class="card-header text-center font-weight-bold text-uppercase py-4">User </h3>
+    <br>
+    <div style="margin-bottom: 120px;" class="container">
+        <input type="text" placeholder="Search" [(ngModel)]="searchText" />
+    </div>
+    <div style="margin-top: -100px;" class="container">
+        <table class="table table-striped custab text-center">
+            <thead>
+                <tr>
+                    <th>Old UserMail</th>
+                    <th>New UserMail</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let mail of changeMail | filter:searchText | paginate: { itemsPerPage: 5,currentPage: p}">
+                    <td>{{mail.user_mail | titlecase}}</td>
+                    <td>{{mail.new_user_mail| titlecase}}</td>
+
+                </tr>
+            </tbody>
+            <br>
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </table>
+    </div>
+</div> -->
+
+
+<div class="cards">
+    <h3 class="card-header text-center font-weight-bold text-center py-4">Project Manager Mail Request</h3>
+    <br>
+    <div class="container" style="margin-top:30px; width: 100%;">
+        <div class="row">
+            <div class="col-sm-2.5">
+                <ul class="nav">
+                    <li class="sub-menu"><a>
+                            <h3>Mail Request</h3>
+                        </a>
+                        <ul class="nav nav-pills flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link active" (click)="getAllPmMail()">All</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" (click)="getAllPmPendingMail()">Pending</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" (click)="getAllPmConfirmedMail()">Confirmed</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" (click)="getAllPmCancelMail()">Cancel</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <hr class="d-sm-none">
+            </div>
+
+            <div class="col-9">
+                <div style="margin-bottom: 120px; " class="container">
+                    <input type="text" placeholder="Search" [(ngModel)]="searchText" />
+                </div>
+                <div class="container" style="margin-top: -100px;">
+                    <table *ngIf="changeMail?.length;else no_data_templ" class="table table-striped custab text-center">
+                        <thead>
+                            <tr>
+                                <th>Old User Mail</th>
+                                <th>New User Mail</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr
+                                *ngFor="let mail of changeMail  | filter:searchText | paginate: { itemsPerPage: 5,currentPage: p}">
+                                <td>{{mail.user_mail}}</td>
+                                <td>{{mail.new_user_mail }}</td>
+                                <td class="text-center">
+                                    <button *ngIf="mail.status === 'PENDING'" class="btn btn-success btn-xs"
+                                        style="margin-right: 20px;" (click)="confirmRoom(mail.mailrequest_id)"><i
+                                            class="fa fa-check"></i>
+                                        Confirm</button>
+                                    <button *ngIf="mail.status === 'PENDING'" class="btn btn-danger btn-xs"
+                                        (click)="cancelRoom(mail.mailrequest_id)"><i class="fa fa-times"></i>
+                                        Cancel</button>
+                                    <p *ngIf="mail.status === 'CONFIRM'"><i class="fa fa-check"></i>CONFIRMED</p>
+                                    <p *ngIf="mail.status === 'CANCEL'"><i class="fa fa-times"></i>CANCELLED</p>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                        <br>
+                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #no_data_templ>
+    <div class="jumbotron">
+        <h1 style="text-align: center;">No Mail Request</h1>
+        <br>
+    </div>
+</ng-template>

@@ -1,0 +1,43 @@
+<div class="cards">
+    <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Update Room</h3>
+    <br>
+    <div class="container">
+
+        <form (ngSubmit)="!roomForm.invalid && UpdateRoom()" #roomForm="ngForm">
+            <fieldset class="form-group">
+                <label>Room Name</label>
+                <input type="text" #roomName="ngModel" [(ngModel)]="room.name" class="form-control" name="name" required
+                    [ngModelOptions]="{standalone: true}" readonly>
+            </fieldset>
+
+            <fieldset class="form-group">
+                <label for="location">Room Location</label>
+                <select class="form-control" #roomLocation="ngModel" [value]="location" [(ngModel)]="room.location"
+                    name="location">
+                    <option value="RABALE">RABALE</option>
+                    <option value="AIROLI">AIROLI</option>
+                    <option value="DADAR">DADAR</option>
+                    <option value="PUNE">PUNE</option>
+                </select>
+            </fieldset>
+
+            <fieldset class="form-group">
+                <label for="facility">Facility</label>
+                <select multiple class="form-control" #roomFacility="ngModel" [(ngModel)]="room.facility"
+                    name="facility">
+                    <option *ngFor="let room of facilitys" [value]="room">
+                        {{room.name}}
+                    </option>
+                </select>
+            </fieldset>
+
+            <div class="container">
+                <button type="submit" class="btn btn-success" (click)="UpdateRoom()"><i class="fa fa-database"></i>
+                    Save</button>
+                <button type="submit" class="btn btn-danger" style="margin-left: 30px;" (click)="CancelRoom()"><i
+                        class="fa fa-close"></i> Cancel</button>
+
+            </div>
+        </form>
+    </div>
+</div>

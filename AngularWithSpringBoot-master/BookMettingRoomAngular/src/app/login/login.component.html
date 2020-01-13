@@ -1,0 +1,55 @@
+<div *ngIf="isLoggedIn; else loggedOut" class="container">
+    <header class="jumbotron">
+        <h1 class="display-5">
+            <strong>{{username | titlecase }}</strong>, Welcome to Book Metting Room.
+        </h1>
+    </header>
+</div>
+
+<ng-template #loggedOut>
+    <div class="container">
+        <div class="card card-container">
+            <img src="assets/imgs/avatar.png" id="profile-img" class="profile-img-card" />
+            <form name="form-signin" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+                <div class="invalid-input" role="alert" *ngIf="errorMessage">
+                    {{errorMessage}}
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" placeholder="Email Id" email="true" class="form-control" id="email"
+                        [(ngModel)]="form.email" #email="ngModel"
+                        [ngClass]="{ 'is-invalid': f.submitted && !email.valid}" required />
+
+                    <div *ngIf="f.submitted && !email.valid" class="invalid-input">
+                        <div *ngIf="email.errors?.required">
+                            Email is required
+                        </div>
+                        <div *ngIf="email.errors?.email">
+                            Email is not valid
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Password" class="form-control"
+                        id="password" [(ngModel)]="form.password"
+                        [ngClass]="{ 'is-invalid': f.submitted && !password.valid}" #password="ngModel" required />
+                    <div *ngIf="f.submitted && !password.valid" class="invalid-input">
+                        <div *ngIf="password.errors?.required">
+                            Password is not valid
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn btn-lg btn-primary btn-block btn-signin form-submit-button">Sign In</button>
+                <div *ngIf="f.submitted && isSignUpFailed" class="invalid-input">
+                    Signup failed!<br />
+                </div>
+            </form>
+            <a [routerLink]="['/auth/forgetPassword']" class="btn btn-link">Forget Password</a>
+            <a [routerLink]="['/signup']" class="btn btn-link">Create New Account!</a>
+        </div>
+    </div>
+</ng-template>

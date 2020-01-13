@@ -1,0 +1,48 @@
+<div class="cards" *ngIf="users?.length;else no_data_templ">
+    <h3 class="card-header text-center font-weight-bold text-uppercase py-4">All User Details</h3>
+    <br>
+    <div class="alert alert-success" *ngIf='message'>{{message}}</div>
+    <div class="container">
+        <input type="text" placeholder="Search" [(ngModel)]="searchText" />
+    </div>
+
+    <div style="margin-top:-90px ;" class="container">
+        <table class="table table-striped custab text-center">
+            <thead>
+                <tr>
+                    <th class="text-center">Username</th>
+                    <th class="text-center">Email</th>
+                    <th class="text-center">Roles</th>
+                    <th class="text-center">Department</th>
+                    <th class="text-center">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of users | filter:searchText | paginate: { itemsPerPage: 5,currentPage: p}">
+                    <td>{{user.username | titlecase}}</td>
+                    <td>{{user.email}}</td>
+                    <td *ngFor="let role of user.roles">
+                        {{role.name | uppercase}}</td>
+                    <td>{{user.department}}</td>
+                    <td>
+                        <span class="table-remove"><button type="button"
+                                class="btn btn-danger btn-xs btn-rounded btn-sm my-0" (click)="deleteRoom(user.id)">
+                                <i class="fa fa-trash"></i>
+                                Delete</button></span>
+                        <span class="table-remove"><button type="button"
+                                class="btn btn-success btn-xs btn-rounded btn-sm my-0" (click)="updateUser(user)"
+                                style="margin-left: 20px;"><i class="fa fa-pencil-square-o"></i> Update</button></span>
+                    </td>
+                </tr>
+            </tbody>
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </table>
+    </div>
+</div>
+
+<ng-template #no_data_templ>
+    <div class="jumbotron">
+        <h1 style="text-align: center;"><i class="fa fa-database"></i>No Data Available</h1>
+        <br>
+    </div>
+</ng-template>

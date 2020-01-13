@@ -1,0 +1,81 @@
+<div class="cards" *ngIf="info.token; else loggedOut">
+    <h3 *ngIf="authority === 'user'" class=" card-header text-center font-weight-bold text-center py-4">User Profile
+    </h3>
+
+    <h3 *ngIf="authority === 'tl'" class=" card-header text-center font-weight-bold text-center py-4">Techincal Lead
+        Profile</h3>
+
+    <h3 *ngIf="authority === 'pm'" class=" card-header text-center font-weight-bold text-center py-4">Project Manager
+        Profile</h3>
+
+    <h3 *ngIf="authority === 'admin'" class=" card-header text-center font-weight-bold text-center py-4">Admin
+        Profile</h3>
+
+    <br>
+    <div class="container" style="margin-left: 530px;margin-top: 10px;">
+        <div class="row">
+            <div class="col-lg-4 col-sm-7">
+
+                <div class="card hovercard">
+                    <div class="cardheader">
+
+                    </div>
+                    <div class="avatar">
+                        <img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+                    </div>
+                    <div class="info">
+                        <div class="title">
+                            <h2 style="margin-bottom: 5px;" style="font-family: Arial, Helvetica, sans-serif">
+                                {{profile.username | titlecase}}</h2>
+                        </div>
+                        <div class="desc" style="margin-bottom: 5px;">
+                            <a style="text-decoration: none;">
+                                <h6 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ">
+                                    {{profile.department}} <i class="fa fa-edit"></i>
+                                </h6>
+                            </a>
+                        </div>
+                        <div class="desc" style="margin-bottom: 5px;">
+                            <a style="text-decoration: none;" [routerLink]="['/ChangeMail']">
+                                <h6 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">
+                                    {{profile.email}}
+                                    <i class="fa fa-edit"></i>
+                                </h6>
+                            </a>
+                        </div>
+                        <div class="desc" *ngFor="let role of profile.roles" style="margin-bottom: 5px;">
+                            <h6 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">{{role.name}}</h6>
+                        </div>
+                    </div>
+                    <div class="bottom">
+                        <a style="margin-left: 5px;" class="btn btn-primary btn-twitter btn-sm"
+                            href="https://twitter.com/webmaniac">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                        <a style="margin-left: 5px;" class="btn btn-danger btn-sm" rel="publisher"
+                            href="https://plus.google.com/+ahmshahnuralam">
+                            <i class="fa fa-google-plus"></i>
+                        </a>
+                        <a style="margin-left: 5px;" class="btn btn-primary btn-sm" rel="publisher"
+                            href="https://plus.google.com/shahnuralam">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<ng-template #loggedOut>
+    <div class="jumbotron jumbtron-fluid">
+        <h3 class="display-4 text-center"><a href="https://icon-library.net/icon/conference-room-icon-2.html"
+                title="Conference Room Icon #418927"><img
+                    src="https://icon-library.net//images/conference-room-icon/conference-room-icon-2.jpg"
+                    width="200"></a> Book Metting Room.</h3>
+        <hr>
+        <h2 class="display-10 text-center"> Please Login to Continue. </h2>
+    </div>
+</ng-template>

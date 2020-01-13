@@ -1,0 +1,28 @@
+<div class="cards">
+    <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Change Mail</h3>
+    <br>
+    <div class="row">
+        <div class="col-md-4" style="margin-left: 440px;">
+            <div class="form-group">
+                <br>
+                <div>
+                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                    <label for="newEmail"> New Email </label>
+                    <input type="email" id="newEmail" class="form-control" name="newEmail" newEmail="true"
+                        [(ngModel)]="form.newEmail" [value]="form.newEmail" #newEmail="ngModel">
+
+                </div>
+                <br>
+                <div>
+                    <a style="margin-left: 60px;" (click)="viewAvailable(form.newEmail)" class="btn btn-success">
+                        <span class="glyphicon glyphicon-ok"></span> Confrm
+                    </a>
+                    <a style="margin-left: 40px;" (click)="cancel()" class="btn btn-danger">
+                        <span class="glyphicon glyphicon-remove"></span> Cancel
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,125 @@
+<!-- <hr>
+<h1 style="text-align: center;">Update User Details</h1>
+<hr>
+
+<div class="container">
+    <div class="card card-container">
+        <label>Name</label>
+        <input type="text" readonly #name="ngModel" [(ngModel)]="user.name" class="form-control" name="name" required>
+    </div>
+
+    <label>Username</label>
+    <input type="text" readonly #userName="ngModel" [(ngModel)]="user.username" class="form-control" username="username"
+        required>
+
+    <fieldset class="form-group">
+        <label>Email</label>
+        <input type="text" #email="ngModel" [(ngModel)]="user.email" class="form-control" email="email" required>
+    </fieldset>
+
+    <fieldset class="form-group">
+        <label for="roles">Roles</label>
+        <select #userRoles="ngModel" [(ngModel)]="user.roles" class="form-control" id="roles" required>
+            <option>ROLE_USER</option>
+            <option *ngFor="let user of roles" [value]="user.name">
+                {{user.name}}
+            </option>
+        </select>
+    </fieldset>
+
+    <button type="submit" class="btn btn-success">Save</button>
+</div>
+
+
+ -->
+<br>
+<div class="alert alert-success" *ngIf='message'>{{message}}</div>
+
+<div class="container bootstrap snippet">
+    <div class="panel-body inf-content">
+        <div class="row">
+            <div class="col-md-4">
+
+            </div>
+            <div class="col-md-6">
+                <br>
+                <strong>Book Room Information</strong><br>
+                <div class="table-responsive">
+                    <table class="table table-condensed table-responsive table-user-information">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <strong>
+                                        <span class="glyphicon glyphicon-home text-primary"></span>
+                                        Room Name
+                                    </strong>
+                                </td>
+                                <td class="text-primary">
+                                    <input type="text" readonly #name="ngModel" [(ngModel)]="room.name"
+                                        class="form-control" name="name" required>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>
+                                        <span class="glyphicon glyphicon-map-marker text-primary"></span>
+                                        Room Location
+                                    </strong>
+                                </td>
+                                <td class="text-primary">
+                                    <input type="text" readonly #location="ngModel" [(ngModel)]="room.location"
+                                        class="form-control" location="location" required>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>
+                                        <span class="glyphicon glyphicon-check text-primary"></span>
+                                        Date From:
+                                    </strong>
+                                </td>
+                                <td *ngFor="let room of confirmRoom"  style="padding-left: 25px; color:dimgray;">
+                                    <p>
+                                        {{room.date1 | uppercase}}</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>
+                                        <span class="glyphicon glyphicon-check text-primary"></span>
+                                        Date to:
+                                    </strong>
+                                </td>
+                                <td *ngFor="let room of confirmRoom"  style="padding-left: 25px; color:dimgray;">
+                                    <p>
+                                        {{room.date2 | uppercase}}
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>
+                                        <span class="glyphicon glyphicon-check text-primary"></span>
+                                        Room Facility
+                                    </strong>
+                                </td>
+                                <td style="padding-left: 25px; color:dimgray;">
+                                    <p *ngFor="let role of room.facility">
+                                        {{role.name | uppercase}}</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <a style="margin-left: 50px;" (click)="ConfirmRoom()" class="btn btn-success">
+                        <span class="glyphicon glyphicon-ok"></span> Confirm
+                    </a>
+                    <a style="margin-left: 50px;" (click)="CancelRoom()" class="btn btn-danger">
+                        <span class="glyphicon glyphicon-remove"></span> Cancel
+                    </a>
+                </div>
+                <br>
+            </div>
+        </div>
+    </div>
+</div>
